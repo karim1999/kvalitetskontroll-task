@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Constants\OrderStatuses;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => $this->faker->numberBetween(1, 100),
+            'total_price' => $this->faker->randomFloat(2, 1, 1000),
+            'status' => $this->faker->randomElement(OrderStatuses::getStringValues()),
+            'customer_name' => $this->faker->name,
         ];
     }
 }

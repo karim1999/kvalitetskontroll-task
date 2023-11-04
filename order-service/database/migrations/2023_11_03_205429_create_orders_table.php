@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->index();
+            $table->string('customer_name'); // redundant, but we want to keep a snapshot of the customer name at the time of purchase
             $table->decimal('total_price');
             $table->enum('status', OrderStatuses::getStringValues())->default(OrderStatuses::PENDING);
             $table->timestamps();
