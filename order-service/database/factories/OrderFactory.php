@@ -23,4 +23,16 @@ class OrderFactory extends Factory
             'customer_name' => $this->faker->name,
         ];
     }
+
+    /**
+     * @return Factory
+     */
+    public function pending(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'status' => OrderStatuses::PENDING,
+            ];
+        });
+    }
 }

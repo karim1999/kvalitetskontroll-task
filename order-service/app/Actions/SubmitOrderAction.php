@@ -38,7 +38,6 @@ class SubmitOrderAction
      */
     public function handle(int $orderId): Order
     {
-        dd("hi");
         // Set order status to COMPLETED
         $order = $this->orderRepository->updateStatus($orderId, OrderStatuses::COMPLETED);
 
