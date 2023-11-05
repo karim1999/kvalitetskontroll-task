@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\ListOrdersAction;
-use App\Http\Requests\ListProductRequest;
+use App\Http\Requests\ListOrderRequest;
 use App\Http\Resources\OrderResource;
 use App\Http\Resources\OrderResourceCollection;
 use App\Models\Order;
@@ -12,11 +12,11 @@ class OrderController extends Controller
 {
     /**
      * List orders paginated
-     * @param ListProductRequest $request
+     * @param ListOrderRequest $request
      * @param ListOrdersAction $listOrdersAction
      * @return OrderResourceCollection
      */
-    public function index(ListProductRequest $request, ListOrdersAction $listOrdersAction): OrderResourceCollection
+    public function index(ListOrderRequest $request, ListOrdersAction $listOrdersAction): OrderResourceCollection
     {
         $validated = $request->validated();
         $page = $validated['page'] ?? 1;

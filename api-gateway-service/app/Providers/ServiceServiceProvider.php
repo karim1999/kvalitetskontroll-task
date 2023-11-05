@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class RepositoryServiceProvider extends ServiceProvider
+class ServiceServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -12,12 +12,12 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(
-            \App\Repositories\Interface\ProductRepositoryInterface::class,
-            \App\Repositories\Concrete\ProductRepository::class
+            \App\Services\Interface\UserServiceInterface::class,
+            \App\Services\Concrete\UserService::class
         );
         $this->app->bind(
-            \App\Repositories\Interface\CategoryRepositoryInterface::class,
-            \App\Repositories\Concrete\CategoryRepository::class
+            \App\Services\Interface\AdminServiceInterface::class,
+            \App\Services\Concrete\AdminService::class
         );
     }
 

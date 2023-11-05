@@ -12,12 +12,12 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(
-            'App\Repositories\Interface\OrderRepositoryInterface',
-            'App\Repositories\Concrete\OrderRepository'
+            \App\Repositories\Interface\OrderRepositoryInterface::class,
+            \App\Repositories\Concrete\OrderRepository::class
         );
         $this->app->bind(
-            'App\Repositories\Interface\OrderItemRepositoryInterface',
-            'App\Repositories\Concrete\OrderItemRepository'
+            \App\Repositories\Interface\OrderItemRepositoryInterface::class,
+            \App\Repositories\Concrete\OrderItemRepository::class
         );
     }
 
