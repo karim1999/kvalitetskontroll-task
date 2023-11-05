@@ -16,10 +16,10 @@ interface ProductRepositoryInterface
 
     /**
      * Get product by id.
-     * @param $id
+     * @param int $id
      * @return Product|null
      */
-    public function find($id): Product|null;
+    public function find(int $id): Product|null;
 
     /**
      * Create a new product.
@@ -31,10 +31,10 @@ interface ProductRepositoryInterface
     /**
      * Update an product.
      * @param array $data
-     * @param $id
+     * @param int $id
      * @return Product
      */
-    public function update(array $data, $id): Product;
+    public function update(int $id, array $data): Product;
 
     /**
      * Delete an product.
@@ -42,4 +42,12 @@ interface ProductRepositoryInterface
      * @return bool
      */
     public function delete($id): bool;
+
+    /**
+     * Add stocks to the product + -.
+     * @param int $id
+     * @param int $quantity
+     * @return Product
+     */
+    public function addProductStock(int $id, int $quantity): Product;
 }

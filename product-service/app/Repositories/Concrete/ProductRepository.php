@@ -27,12 +27,12 @@ class ProductRepository implements ProductRepositoryInterface
 
     /**
      * Get product by id.
-     * @param $id
+     * @param int $id
      * @return Product|null
      */
-    public function find($id): Product|null
+    public function find(int $id): Product|null
     {
-        // TODO: Implement all() method.
+        return Product::find($id);
     }
 
     /**
@@ -42,18 +42,18 @@ class ProductRepository implements ProductRepositoryInterface
      */
     public function create(array $data): Product
     {
-        // TODO: Implement all() method.
+        return Product::create($data);
     }
 
     /**
      * Update an product.
+     * @param int $id
      * @param array $data
-     * @param $id
      * @return Product
      */
-    public function update(array $data, $id): Product
+    public function update(int $id, array $data): Product
     {
-        // TODO: Implement all() method.
+        return Product::where('id', $id)->update($data);
     }
 
     /**
@@ -63,6 +63,20 @@ class ProductRepository implements ProductRepositoryInterface
      */
     public function delete($id): bool
     {
-        // TODO: Implement all() method.
+        return Product::where('id', $id)->delete();
+    }
+
+    /**
+     * Add stocks to the product + -.
+     * @param $id
+     * @param int $quantity
+     * @return Product
+     */
+    public function addProductStock($id, int $quantity): Product
+    {
+        $product = Product::lockForUpdate()->find($id);
+        $product->stock += $quantity;
+        $product->save();
+        return $product;
     }
 }
