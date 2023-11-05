@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Concrete;
 
+use App\Constants\OrderStatuses;
 use App\Models\Order;
 use App\Repositories\Interface\OrderRepositoryInterface;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -26,13 +27,19 @@ class OrderRepository implements OrderRepositoryInterface
     }
 
     /**
-     * Get order by id.
-     * @param $id
-     * @return Order|null
+     * Get draft/cart order by user id.
+     * @param int $userId
+     * @param string $userName
+     * @return Order
      */
-    public function find($id): Order|null
+    public function findCartByUserId(int $userId, string $userName): Order
     {
-        // TODO: Implement all() method.
+        return Order::firstOrCreate([
+            'user_id' => $userId,
+            'status' => OrderStatuses::PENDING,
+        ], [
+            'customer_name' => $userName,
+        ]);
     }
 
     /**
@@ -42,18 +49,32 @@ class OrderRepository implements OrderRepositoryInterface
      */
     public function create(array $data): Order
     {
-        // TODO: Implement all() method.
+        // TODO: Implement create() method.
+    }
+
+    /**
+     * Update an order status.
+     * @param $id
+     * @param OrderStatuses $status
+     * @return Order
+     */
+    public function updateStatus($id, OrderStatuses $status): Order
+    {
+        $order = Order::findOrFail($id);
+        $order->status = $status;
+        $order->save();
+        return $order;
     }
 
     /**
      * Update an order.
-     * @param array $data
      * @param $id
+     * @param array $data
      * @return Order
      */
-    public function update(array $data, $id): Order
+    public function update($id, array $data): Order
     {
-        // TODO: Implement all() method.
+        // TODO: Implement update() method.
     }
 
     /**
@@ -61,7 +82,7 @@ class OrderRepository implements OrderRepositoryInterface
      * @param $id
      * @return bool
      */
-    public function delete($id): bool
+    public function Delete($id): bool
     {
         // TODO: Implement all() method.
     }

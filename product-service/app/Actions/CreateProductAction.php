@@ -21,22 +21,12 @@ class CreateProductAction
     }
 
     /**
-     * List products paginated
-     * @param string $name
-     * @param string $description
-     * @param $price
-     * @param int $categoryId
-     * @param int $stock
+     * Create product
+     * @param array $data
      * @return Product
      */
-    public function handle(string $name, string $description, $price, int $categoryId, int $stock): Product
+    public function handle(array $data): Product
     {
-        return $this->productRepository->create([
-            'name' => $name,
-            'description' => $description,
-            'price' => $price,
-            'category_id' => $categoryId,
-            'stock' => $stock,
-        ]);
+        return $this->productRepository->create($data);
     }
 }

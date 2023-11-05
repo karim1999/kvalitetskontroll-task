@@ -19,7 +19,6 @@ class OrderFactory extends Factory
     {
         return [
             'user_id' => $this->faker->numberBetween(1, 100),
-            'total_price' => $this->faker->randomFloat(2, 1, 1000),
             'status' => $this->faker->randomElement(OrderStatuses::getStringValues()),
             'customer_name' => $this->faker->name,
         ];

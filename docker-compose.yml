@@ -42,7 +42,7 @@ services:
             - microservices-network
             - api-gateway-service-network
         environment:
-            QUEUE_CONNECTION: rabbitmq
+            QUEUE_CONNECTION: sync
             RABBITMQ_HOST: rabbitmq
             RABBITMQ_PORT: 5672
             RABBITMQ_USER: rabbitmq
@@ -95,7 +95,7 @@ services:
             DB_DATABASE: user-service
             DB_USERNAME: root
             DB_PASSWORD: password
-            QUEUE_CONNECTION: rabbitmq
+            QUEUE_CONNECTION: sync
             RABBITMQ_HOST: rabbitmq
             RABBITMQ_PORT: 5672
             RABBITMQ_USER: rabbitmq
@@ -153,7 +153,7 @@ services:
             DB_DATABASE: admin-service
             DB_USERNAME: root
             DB_PASSWORD: password
-            QUEUE_CONNECTION: rabbitmq
+            QUEUE_CONNECTION: sync
             RABBITMQ_HOST: rabbitmq
             RABBITMQ_PORT: 5672
             RABBITMQ_USER: rabbitmq
@@ -211,7 +211,7 @@ services:
             DB_DATABASE: product-service
             DB_USERNAME: root
             DB_PASSWORD: password
-            QUEUE_CONNECTION: rabbitmq
+            QUEUE_CONNECTION: sync
             RABBITMQ_HOST: rabbitmq
             RABBITMQ_PORT: 5672
             RABBITMQ_USER: rabbitmq
@@ -269,7 +269,7 @@ services:
             DB_DATABASE: order-service
             DB_USERNAME: root
             DB_PASSWORD: password
-            QUEUE_CONNECTION: rabbitmq
+            QUEUE_CONNECTION: sync
             RABBITMQ_HOST: rabbitmq
             RABBITMQ_PORT: 5672
             RABBITMQ_USER: rabbitmq
@@ -319,7 +319,7 @@ services:
             - microservices-network
             - notification-service-network
         environment:
-            QUEUE_CONNECTION: rabbitmq
+            QUEUE_CONNECTION: sync
             RABBITMQ_HOST: rabbitmq
             RABBITMQ_PORT: 5672
             RABBITMQ_USER: rabbitmq

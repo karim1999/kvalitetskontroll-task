@@ -35,6 +35,7 @@ class AdminMiddleware
         if ($token) {
             $response = $this->adminService->getAdminByToken($token);
             if ($response->successful()) {
+                $request->headers->remove('content-length');
                 $admin = $response->json();
                 // add admin to the request
                 $request->merge(['admin'=> $admin, 'admin_id' => $admin['id']]);

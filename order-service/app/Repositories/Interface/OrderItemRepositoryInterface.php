@@ -6,6 +6,17 @@ use Illuminate\Database\Eloquent\Collection;
 interface OrderItemRepositoryInterface
 {
     /**
+     * Add product to order/cart.
+     * @param int $orderId
+     * @param int $productId
+     * @param int $quantity
+     * @param float $price
+     * @param string $productName
+     * @return OrderItem
+     */
+    public function addProduct(int $orderId, int $productId, int $quantity, float $price, string $productName): OrderItem;
+
+    /**
      * Get all order items.
      * @return Collection
      */

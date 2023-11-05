@@ -1,5 +1,6 @@
 <?php
 namespace App\Repositories\Interface;
+use App\Constants\OrderStatuses;
 use App\Models\Order;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
@@ -15,11 +16,12 @@ interface OrderRepositoryInterface
     public function list(int $page, int $perPage, int $userId = null): LengthAwarePaginator;
 
     /**
-     * Get order by id.
-     * @param $id
-     * @return Order|null
+     * Get draft/cart order by user id.
+     * @param int $userId
+     * @param string $userName
+     * @return Order
      */
-    public function find($id): Order|null;
+    public function findCartByUserId(int $userId, string $userName): Order;
 
     /**
      * Create a new order.
@@ -29,12 +31,20 @@ interface OrderRepositoryInterface
     public function create(array $data): Order;
 
     /**
-     * Update an order.
-     * @param array $data
+     * Update an order status.
      * @param $id
+     * @param OrderStatuses $status
      * @return Order
      */
-    public function update(array $data, $id): Order;
+    public function updateStatus($id, OrderStatuses $status): Order;
+
+    /**
+     * Update an order.
+     * @param $id
+     * @param array $data
+     * @return Order
+     */
+    public function update($id, array $data): Order;
 
     /**
      * Delete an order.

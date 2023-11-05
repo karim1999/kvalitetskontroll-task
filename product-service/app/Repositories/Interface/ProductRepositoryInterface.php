@@ -32,9 +32,9 @@ interface ProductRepositoryInterface
      * Update an product.
      * @param array $data
      * @param int $id
-     * @return Product
+     * @return bool
      */
-    public function update(int $id, array $data): Product;
+    public function update(int $id, array $data): bool;
 
     /**
      * Delete an product.

@@ -49,9 +49,9 @@ class ProductRepository implements ProductRepositoryInterface
      * Update an product.
      * @param int $id
      * @param array $data
-     * @return Product
+     * @return bool
      */
-    public function update(int $id, array $data): Product
+    public function update(int $id, array $data): bool
     {
         return Product::where('id', $id)->update($data);
     }

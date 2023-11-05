@@ -13,7 +13,7 @@ class Product extends Model
     /**
      * @var string[]
      */
-    protected $fillable = ['category_id', 'name', 'description', 'price', 'image'];
+    protected $fillable = ['category_id', 'name', 'description', 'price', 'image', 'stock'];
 
     /**
      * @return BelongsTo

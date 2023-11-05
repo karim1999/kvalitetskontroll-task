@@ -21,26 +21,18 @@ class UpdateProductAction
     }
 
     /**
-     * List products paginated
+     * Update product
      * @param int $id
-     * @param string $name
-     * @param string $description
-     * @param $price
-     * @param int $categoryId
-     * @param int $stockToAdd
+     * @param array $data
      * @return Product
      */
-    public function handle(int $id, string $name, string $description, $price, int $categoryId, int $stockToAdd): Product
+    public function handle(int $id, array $data): Product
     {
-        $product = $this->productRepository->update($id, [
-            'name' => $name,
-            'description' => $description,
-            'price' => $price,
-            'category_id' => $categoryId,
-        ]);
-        if ($stockToAdd){
-            $product = $this->productRepository->addProductStock($id, $stockToAdd);
+        if (isset($data['add_to_stock'])){
+            $this->productRepository->addProductStock($id, $data['add_to_stock']);
+            unset($data['add_to_stock']);
         }
-        return $product;
+        $this->productRepository->update($id, $data);
+        return $this->productRepository->find($id);
     }
 }

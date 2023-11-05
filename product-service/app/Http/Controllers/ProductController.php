@@ -52,12 +52,7 @@ class ProductController extends Controller
     public function store(CreateProductRequest $request, CreateProductAction $createProductAction): ProductResource
     {
         $validated = $request->validated();
-        $name = $validated['name'];
-        $description = $validated['description'] ?? null;
-        $price = $validated['price'];
-        $categoryId = $validated['category_id'] ?? null;
-        $stock = $validated['stock'] ?? 0;
-        $product = $createProductAction->handle($name, $description, $price, $categoryId, $stock);
+        $product = $createProductAction->handle($validated);
         return new ProductResource($product);
     }
 
@@ -71,12 +66,7 @@ class ProductController extends Controller
     public function update(Product $product, UpdateProductRequest $request, UpdateProductAction $updateProductAction): ProductResource
     {
         $validated = $request->validated();
-        $name = $validated['name'];
-        $description = $validated['description'] ?? null;
-        $price = $validated['price'];
-        $categoryId = $validated['category_id'] ?? null;
-        $stockToAdd = $validated['add_to_stock'] ?? 0;
-        $product = $updateProductAction->handle($product->id, $name, $description, $price, $categoryId, $stockToAdd);
+        $product = $updateProductAction->handle($product->id, $validated);
         return new ProductResource($product);
     }
 

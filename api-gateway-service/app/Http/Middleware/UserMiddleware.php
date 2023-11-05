@@ -35,6 +35,7 @@ class UserMiddleware
         if ($token) {
             $response = $this->userService->getUserByToken($token);
             if ($response->successful()) {
+                $request->headers->remove('content-length');
                 $user = $response->json();
                 // add user to the request
                 $request->merge(['user'=> $user, 'user_id' => $user['id']]);

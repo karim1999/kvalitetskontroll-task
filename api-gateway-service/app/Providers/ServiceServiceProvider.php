@@ -19,6 +19,14 @@ class ServiceServiceProvider extends ServiceProvider
             \App\Services\Interface\AdminServiceInterface::class,
             \App\Services\Concrete\AdminService::class
         );
+        $this->app->bind(
+            \App\Services\Interface\OrderServiceInterface::class,
+            \App\Services\Concrete\OrderService::class
+        );
+        $this->app->bind(
+            \App\Services\Interface\ProductServiceInterface::class,
+            \App\Services\Concrete\ProductService::class
+        );
     }
 
     /**

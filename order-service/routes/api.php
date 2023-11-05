@@ -18,3 +18,5 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 Route::resource('orders', \App\Http\Controllers\OrderController::class)->only(['index', 'show']);
+Route::post('/orders/{order}/submit', [\App\Http\Controllers\OrderController::class, 'submit'])->name('orders.submit');
+Route::post('/add-to-cart', [\App\Http\Controllers\OrderController::class, 'addToCart'])->name('add-to-cart');

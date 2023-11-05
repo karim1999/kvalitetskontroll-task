@@ -14,14 +14,13 @@ class Order extends Model
     /**
      * @var string[]
      */
-    protected $fillable = [ 'user_id', 'total_price', 'status', 'customer_name' ];
+    protected $fillable = [ 'user_id', 'status', 'customer_name' ];
 
     /**
      * @var string[]
      */
     protected $casts = [
         'status' => OrderStatuses::class,
-        'total_price' => 'float',
     ];
 
     /**

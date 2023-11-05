@@ -18,7 +18,6 @@ class Controller extends BaseController
      */
     public function convertToJsonResponse(Response $serviceResponse): JsonResponse
     {
-        return response()
-            ->json($serviceResponse->json(), $serviceResponse->status(), $serviceResponse->headers());
+        return response()->json($serviceResponse->json(), $serviceResponse->status(), $serviceResponse->headers());
     }
 }

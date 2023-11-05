@@ -9,6 +9,27 @@ use Illuminate\Database\Eloquent\Collection;
 class OrderItemRepository implements OrderItemRepositoryInterface
 {
     /**
+     * Add product to order/cart.
+     * @param int $orderId
+     * @param int $productId
+     * @param int $quantity
+     * @param float $price
+     * @param string $productName
+     * @return OrderItem
+     */
+    public function addProduct(int $orderId, int $productId, int $quantity, float $price, string $productName): OrderItem
+    {
+        return OrderItem::updateOrCreate([
+            'order_id' => $orderId,
+            'product_id' => $productId,
+        ], [
+            'quantity' => $quantity,
+            'price' => $price,
+            'product_name' => $productName,
+        ]);
+    }
+
+    /**
      * Get all order items.
      * @return Collection
      */

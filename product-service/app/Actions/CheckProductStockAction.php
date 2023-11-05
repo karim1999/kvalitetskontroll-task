@@ -4,7 +4,7 @@ namespace App\Actions;
 
 use App\Repositories\Interface\ProductRepositoryInterface;
 
-class DeleteProductAction
+class CheckProductStockAction
 {
     /**
      * @var ProductRepositoryInterface
@@ -20,12 +20,14 @@ class DeleteProductAction
     }
 
     /**
-     * Delete product
+     * Check product stock
      * @param int $id
+     * @param int $quantity
      * @return bool
      */
-    public function handle(int $id): bool
+    public function handle(int $id, int $quantity): bool
     {
-        return $this->productRepository->delete($id);
+        $product = $this->productRepository->find($id);
+        return $product->stock >= $quantity;
     }
 }
