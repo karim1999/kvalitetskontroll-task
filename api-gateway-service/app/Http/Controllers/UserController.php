@@ -6,6 +6,11 @@ use App\Services\Interface\UserServiceInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
+/**
+ * @group User Authentication
+ *
+ * APIs for users Authentication
+ */
 class UserController extends Controller
 {
     /**
@@ -22,6 +27,9 @@ class UserController extends Controller
     }
 
     /**
+     * Login user
+     * @bodyParam email string required The email of the user. Example: example@gmail.com
+     * @bodyParam password string required The password of the user. Example: password
      * @param Request $request
      * @return JsonResponse
      */
@@ -32,6 +40,11 @@ class UserController extends Controller
     }
 
     /**
+     * Register user
+     * @bodyParam name string required The name of the user. Example: John Doe
+     * @bodyParam email string required The email of the user. Example: example@gmail.com
+     * @bodyParam password string required The password of the user. Example: password
+     * @bodyParam password_confirmation string required The password confirmation of the user. Example: password
      * @param Request $request
      * @return JsonResponse
      */
@@ -42,6 +55,8 @@ class UserController extends Controller
     }
 
     /**
+     * Logout user
+     * @authenticated
      * @param Request $request
      * @return JsonResponse
      */
@@ -52,6 +67,19 @@ class UserController extends Controller
     }
 
     /**
+     * Get user
+     * @authenticated
+     * @response {
+     * "id": 1,
+     * "name": "John Doe",
+     * "email": "test@gmail.com",
+     * "email_verified_at": null,
+     * "created_at": "2021-03-28T12:50:50.000000Z",
+     * "updated_at": "2021-03-28T12:50:50.000000Z"
+     * }
+     * @response 401 {
+     * "message": "Unauthenticated."
+     * }
      * @param Request $request
      * @return JsonResponse
      */

@@ -7,6 +7,11 @@ use App\Services\Interface\AdminServiceInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
+/**
+ * @group Admin Authentication
+ *
+ * APIs for Admin authentication
+ */
 class AdminController extends Controller
 {
     /**
@@ -23,6 +28,9 @@ class AdminController extends Controller
     }
 
     /**
+     * Login admin
+     * @bodyParam email string required The email of the user. Example: example@gmail.com
+     * @bodyParam password string required The password of the user. Example: password
      * @param Request $request
      * @return JsonResponse
      */
@@ -33,6 +41,8 @@ class AdminController extends Controller
     }
 
     /**
+     * Logout user
+     * @authenticated
      * @param Request $request
      * @return JsonResponse
      */
@@ -43,6 +53,19 @@ class AdminController extends Controller
     }
 
     /**
+     * Get admin
+     * @authenticated
+     * @response {
+     * "id": 1,
+     * "name": "John Doe",
+     * "email": "test@gmail.com",
+     * "email_verified_at": null,
+     * "created_at": "2021-03-28T12:50:50.000000Z",
+     * "updated_at": "2021-03-28T12:50:50.000000Z"
+     * }
+     * @response 401 {
+     * "message": "Unauthenticated."
+     * }
      * @param Request $request
      * @return JsonResponse
      */

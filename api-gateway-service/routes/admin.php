@@ -11,8 +11,8 @@ Route::name('admin.')->prefix('admin')->group(function () {
 
     Route::middleware('admin')->group(function () {
         Route::get('/user', [AdminController::class, 'getUser'])->name('get');
-        Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
         Route::resource('orders', OrderController::class)->only(['index', 'show']);
         Route::resource('products', ProductController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
+        Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
     });
 });

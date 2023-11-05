@@ -7,6 +7,11 @@ use App\Services\Interface\ProductServiceInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
+/**
+ * @group User Product management
+ *
+ * APIs for managing products
+ */
 class ProductController extends Controller
 {
     /**
@@ -23,6 +28,11 @@ class ProductController extends Controller
     }
 
     /**
+     * List products
+     * @authenticated
+     * @queryParam page int The page number. Example: 1
+     * @queryParam per_page int The number of items per page. Example: 10
+     * @queryParam category_id int The ID of the category. Example: 1
      * @param Request $request
      * @return JsonResponse
      */
@@ -33,6 +43,9 @@ class ProductController extends Controller
     }
 
     /**
+     * Show product
+     * @authenticated
+     * @urlParam id int required The ID of the product. Example: 1
      * @param Request $request
      * @param int $id
      * @return JsonResponse

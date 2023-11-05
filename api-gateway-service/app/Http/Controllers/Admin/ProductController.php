@@ -7,6 +7,11 @@ use App\Services\Interface\ProductServiceInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
+/**
+ * @group Admin Product management
+ *
+ * APIs for managing products
+ */
 class ProductController extends Controller
 {
     /**
@@ -23,6 +28,11 @@ class ProductController extends Controller
     }
 
     /**
+     * List products
+     * @authenticated
+     * @queryParam page int The page number. Example: 1
+     * @queryParam per_page int The number of items per page. Example: 10
+     * @queryParam category_id int The ID of the category. Example: 1
      * @param Request $request
      * @return JsonResponse
      */
@@ -33,6 +43,9 @@ class ProductController extends Controller
     }
 
     /**
+     * Show product
+     * @authenticated
+     * @urlParam id int required The ID of the product. Example: 1
      * @param Request $request
      * @param int $id
      * @return JsonResponse
@@ -44,6 +57,13 @@ class ProductController extends Controller
     }
 
     /**
+     * Create product
+     * @authenticated
+     * @bodyParam name string required The name of the product. Example: Product 1
+     * @bodyParam description string required The description of the product. Example: Product 1 description
+     * @bodyParam price float required The price of the product. Example: 10.00
+     * @bodyParam category_id int required The ID of the category. Example: 1
+     * @bodyParam stock the quantity of the product. Example: 3
      * @param Request $request
      * @return JsonResponse
      */
@@ -54,6 +74,14 @@ class ProductController extends Controller
     }
 
     /**
+     * Update product
+     * @authenticated
+     * @urlParam id int required The ID of the product. Example: 1
+     * @bodyParam name string required The name of the product. Example: Product 1
+     * @bodyParam description string required The description of the product. Example: Product 1 description
+     * @bodyParam price float required The price of the product. Example: 10.00
+     * @bodyParam category_id int required The ID of the category. Example: 1
+     * @bodyParam add_to_stock the quantity to add to the product. Example: 3, -3
      * @param Request $request
      * @param int $id
      * @return JsonResponse
@@ -65,6 +93,9 @@ class ProductController extends Controller
     }
 
     /**
+     * Delete product
+     * @authenticated
+     * @urlParam id int required The ID of the product. Example: 1
      * @param Request $request
      * @param int $id
      * @return JsonResponse
