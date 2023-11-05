@@ -63,7 +63,7 @@ docker-compose exec <service-name> composer install
 ```
 
 
-- Generate a key for the application.
+- Generate a key for each application.
 
 ```bash
 docker-compose exec <service-name> php artisan key:generate
@@ -73,6 +73,18 @@ docker-compose exec <service-name> php artisan key:generate
 
 ```bash
 docker-compose exec <service-name> php artisan migrate --seed
+```
+
+- Run queue workers for each service. (Rabbitmq queues can be used if needed)
+
+```bash
+docker-compose exec <service-name> php artisan queue:listen
+```
+
+- Run Message consumers for each service. For now only the (order, product, notification) services have consumers.
+
+```bash
+docker-compose exec <service-name> php artisan consume:messages
 ```
 
 - You can access the services through their respective endpoints, and the API Gateway will handle the routing. The API Gateway is the only service accessible via the internet.

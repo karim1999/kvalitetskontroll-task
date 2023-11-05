@@ -34,17 +34,20 @@ class SubmitOrderAction
     /**
      * Add product to cart
      * @param int $orderId
+     * @param ?string $email
      * @return Order
      */
-    public function handle(int $orderId): Order
+    public function handle(int $orderId, ?string $email): Order
     {
         // Set order status to COMPLETED
         $order = $this->orderRepository->updateStatus($orderId, OrderStatuses::COMPLETED);
 
         // Publish order completed message
         $this->publishMessageAction->handle('order_completed', [
+            // We can publish other info if needed here
             "order_id" => $orderId,
             "user_id" => $order->user_id,
+            "email" => $email,
         ]);
         return $order;
     }

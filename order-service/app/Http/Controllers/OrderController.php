@@ -71,7 +71,8 @@ class OrderController extends Controller
      */
     public function submit(Order $order, SubmitOrderAction $submitOrderAction): OrderResource
     {
-        $order = $submitOrderAction->handle($order->id);
+        $email = request()->user['email'];
+        $order = $submitOrderAction->handle($order->id, $email);
         return new OrderResource($order);
     }
 }
