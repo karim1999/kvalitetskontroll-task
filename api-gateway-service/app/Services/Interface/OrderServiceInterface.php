@@ -25,4 +25,10 @@ interface OrderServiceInterface
      * @return Response
      */
     public function submit(Request $request, int $id): Response;
+
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function addToCart(Request $request): Response;
 }

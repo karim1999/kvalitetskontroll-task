@@ -42,4 +42,25 @@ class OrderController extends Controller
         $serviceResponse = $this->orderService->find($request, $id);
         return $this->convertToJsonResponse($serviceResponse);
     }
+
+    /**
+     * @param Request $request
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function submit(Request $request, int $id): JsonResponse
+    {
+        $serviceResponse = $this->orderService->submit($request, $id);
+        return $this->convertToJsonResponse($serviceResponse);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function addToCart(Request $request): JsonResponse
+    {
+        $serviceResponse = $this->orderService->addToCart($request);
+        return $this->convertToJsonResponse($serviceResponse);
+    }
 }

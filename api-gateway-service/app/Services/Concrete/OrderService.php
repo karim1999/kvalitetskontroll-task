@@ -53,6 +53,17 @@ class OrderService implements OrderServiceInterface
     {
         return $this->client
             ->withHeaders($request->headers->all())
-            ->patch("/api/orders/{$id}", $request->all());
+            ->patch("/api/orders/{$id}/submit", $request->all());
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function addToCart(Request $request): Response
+    {
+        return $this->client
+            ->withHeaders($request->headers->all())
+            ->patch("/api/add-to-cart", $request->all());
     }
 }
